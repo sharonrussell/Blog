@@ -14,6 +14,10 @@ namespace Services
             _blogRepository = blogRepository;
         }
 
+        protected BlogService()
+        {
+        }
+
         public void AddEntry(Guid blogId, string title, string body)
         {
             if (String.IsNullOrWhiteSpace(title))
