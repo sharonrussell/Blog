@@ -1,0 +1,16 @@
+﻿using DataAccess.Context;
+using DataAccess.Repository;
+using Ninject.Modules;
+
+namespace Services.DependencyInjection
+{
+    public class BlogModule : NinjectModule
+    {
+        public override void Load()
+        {
+            Bind<IBlogRepository>().To<BlogRepository>();
+            Bind<IBlogService>().To<BlogService>();
+            Bind<IContextFactory>().To<ContextFactory>();
+        }
+    }
+}
