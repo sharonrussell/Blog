@@ -6,3 +6,5 @@ Services.Tests/obj/Debug/
 DataAccess/obj/Debug/
 Domain.Tests/obj/Debug/
 Domain/obj/Debug/
+Services.Tests/bin/Debug/
+Web/obj/Debug/
