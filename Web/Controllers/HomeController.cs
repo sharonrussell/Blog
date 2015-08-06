@@ -5,7 +5,7 @@ namespace Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IBlogService _blogService;
+        private readonly IBlogService _blogService;
 
         public HomeController(IBlogService blogService)
         {

@@ -9,8 +9,8 @@ namespace Services.DependencyInjection
         public override void Load()
         {
             Bind<IBlogRepository>().To<BlogRepository>();
-            Bind<IBlogService>().To<BlogService>();
             Bind<IContextFactory>().To<ContextFactory>();
+            Bind<IBlogService>().To<BlogService>();
         }
     }
 }
