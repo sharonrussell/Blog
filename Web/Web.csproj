@@ -151,17 +151,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{92C705F0-D7D3-4FE4-8ECD-27D6D38D266C}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{991EC9DF-32B7-4F29-997A-DF167E9C9B24}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{f453de1e-fe7c-4991-b225-acecd9538558}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

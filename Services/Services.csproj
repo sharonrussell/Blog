@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{991EC9DF-32B7-4F29-997A-DF167E9C9B24}</ProjectGuid>
+    <ProjectGuid>{F453DE1E-FE7C-4991-B225-ACECD9538558}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Services</RootNamespace>
@@ -50,10 +50,10 @@
   <ItemGroup>
     <Compile Include="BlogDto.cs" />
     <Compile Include="DependencyInjection\BlogModule.cs" />
+    <Compile Include="BlogService.cs" />
     <Compile Include="EntryDto.cs" />
     <Compile Include="IBlogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BlogService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -61,11 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{92C705F0-D7D3-4FE4-8ECD-27D6D38D266C}</Project>
+      <Project>{92c705f0-d7d3-4fe4-8ecd-27d6d38d266c}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{96511E61-2B20-4849-994F-D1256ECADCB0}</Project>
+      <Project>{96511e61-2b20-4849-994f-d1256ecadcb0}</Project>
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
