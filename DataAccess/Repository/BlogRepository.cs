@@ -48,8 +48,7 @@ namespace DataAccess.Repository
         {
             using (_context = _contextFactory.CreateContext())
             {
-                IEnumerable<Blog> blogs = _context.Blogs.Include(b => b.Entries);
-                return blogs.ToList();
+                return _context.Blogs.Include(b => b.Entries).ToList();
             }
         }
 

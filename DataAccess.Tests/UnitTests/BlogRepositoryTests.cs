@@ -67,16 +67,6 @@ namespace DataAccess.Tests.UnitTests
             Assert.Throws<ObjectDoesNotExistException>(() =>_blogRepository.AddEntry(It.IsAny<Guid>(), "title", "body"));
         }
 
-        [Test]
-        public void When_GettingBlogs_Should_ReturnBlogsFromDB()
-        {
-            IEnumerable<Blog> blogs =_blogRepository.GetBlogs().ToList();
-
-            Assert.That(blogs, Is.Not.Null);
-            Assert.That(blogs.Count(), Is.GreaterThan(0));
-            Assert.That(blogs.Any(o => o.BlogId == _blog.BlogId));
-        }
-
         private void MockDbSets()
         {
             _blogSet.As<IQueryable<Blog>>().Setup(o => o.Provider).Returns(_blogs.Provider);

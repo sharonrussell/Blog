@@ -48,7 +48,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlogDto.cs" />
     <Compile Include="DependencyInjection\BlogModule.cs" />
+    <Compile Include="EntryDto.cs" />
     <Compile Include="IBlogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BlogService.cs" />
@@ -61,6 +63,10 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{92C705F0-D7D3-4FE4-8ECD-27D6D38D266C}</Project>
       <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{96511E61-2B20-4849-994F-D1256ECADCB0}</Project>
+      <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
