@@ -1,12 +1,13 @@
 ﻿using System;
-using System.ServiceModel;
+using System.Collections.Generic;
+using Domain;
 
 namespace DataAccess.Repository
 {
-    [ServiceContract]
     public interface IBlogRepository
     {
-        [OperationContract]
         void AddEntry(Guid blogId, string title, string body);
+
+        IEnumerable<Blog> GetBlogs();
     }
 }

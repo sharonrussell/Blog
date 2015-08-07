@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataAccess.Context;
 using DataAccess.Exceptions;
@@ -39,6 +40,14 @@ namespace DataAccess.Repository
 
                 _context.Entries.Add(entry);
                 _context.SaveChanges();
+            }
+        }
+
+        public IEnumerable<Blog> GetBlogs()
+        {
+            using (_context = _contextFactory.CreateContext())
+            {
+                return _context.Blogs;
             }
         }
 
