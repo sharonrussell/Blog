@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Diagnostics;
 using DataAccess.Configuration;
 using Domain;
 
@@ -17,6 +18,8 @@ namespace DataAccess.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Debug.Write(Database.Connection.ConnectionString);
+
             modelBuilder.Configurations.Add(new BlogConfiguration());
             modelBuilder.Configurations.Add(new EntryConfiguration());
         }

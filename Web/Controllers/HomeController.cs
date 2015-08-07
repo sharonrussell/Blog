@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Services;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -14,7 +17,15 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<BlogDto> blogs = _blogService.GetBlogs();
+
+            List<BlogViewModel> blogViewModels = blogs.Select(blog => new BlogViewModel
+            {
+                BlogId = blog.BlogId, 
+                Author = blog.Author
+            }).ToList();
+
+            return View(blogViewModels);
         }
     }
 }

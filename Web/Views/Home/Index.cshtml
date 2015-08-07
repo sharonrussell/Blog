@@ -1,7 +1,13 @@
-﻿@model Web.Models.HomeModel
+﻿@using Web.Models
+@model IEnumerable<Web.Models.BlogViewModel>
 
 @{
 	ViewBag.Title = "Blogs";
 }
 
 <h2>Blogs</h2>
+
+@foreach (BlogViewModel model in Model)
+{
+	@Html.DisplayText(model.Author);
+}
