@@ -1,5 +1,5 @@
 ﻿@using Web.Models
-@model IEnumerable<Web.Models.BlogViewModel>
+@model IEnumerable<BlogViewModel>
 
 @{
 	ViewBag.Title = "Blogs";
@@ -9,5 +9,5 @@
 
 @foreach (BlogViewModel model in Model)
 {
-	@Html.DisplayText(model.Author);
+	@Html.DisplayText(model.Author)
 }
