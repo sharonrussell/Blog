@@ -8,6 +8,6 @@ namespace DataAccess.Repository
     {
         void AddEntry(Guid blogId, string title, string body);
 
-        IEnumerable<Blog> GetBlogs();
+        IList<Blog> GetBlogs();
     }
 }

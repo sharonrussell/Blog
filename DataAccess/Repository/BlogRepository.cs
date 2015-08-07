@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using DataAccess.Context;
 using DataAccess.Exceptions;
@@ -43,11 +44,12 @@ namespace DataAccess.Repository
             }
         }
 
-        public IEnumerable<Blog> GetBlogs()
+        public IList<Blog> GetBlogs()
         {
             using (_context = _contextFactory.CreateContext())
             {
-                return _context.Blogs;
+                IEnumerable<Blog> blogs = _context.Blogs.Include(b => b.Entries);
+                return blogs.ToList();
             }
         }
 
