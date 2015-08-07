@@ -1,6 +1,6 @@
 ﻿namespace Web.Models
 {
-    public class HomeModel
+    public class BlogModel
     {
     }
 }

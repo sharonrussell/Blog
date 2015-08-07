@@ -12,10 +12,6 @@ namespace Web.Controllers
             _blogService = blogService;
         }
 
-        public HomeController()
-        {
-        }
-
         public ActionResult Index()
         {
             return View();
