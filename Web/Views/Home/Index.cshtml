@@ -9,5 +9,5 @@
 
 @foreach (BlogViewModel model in Model)
 {
-	@Html.DisplayText(model.Author)
+	@Html.DisplayFor(m => model.Author);
 }
