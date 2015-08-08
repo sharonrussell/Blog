@@ -70,7 +70,6 @@ namespace Services.Tests
             BlogDto blog = blogs.Single(o => o.BlogId == _blog.BlogId);
 
             Assert.That(blogs, Is.Not.Null);
-            Assert.That(blogs.Count(), Is.EqualTo(1));
             Assert.That(blog.Author == "Sharon");
             Assert.That(blog.Entries, Is.Not.Null);
             Assert.That(blog.Entries.FirstOrDefault(o => o.Body == "body"), Is.Not.Null);

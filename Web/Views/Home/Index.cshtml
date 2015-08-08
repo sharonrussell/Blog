@@ -9,5 +9,6 @@
 
 @foreach (BlogViewModel model in Model)
 {
-	@Html.DisplayFor(m => model.Author);
+	string authorLink = String.Format("View {0}'s blog", model.Author);
+	<a href='@Url.Action("Index", "Blog", new { id = model.BlogId })'>@authorLink</a>
 }

@@ -1,0 +1,15 @@
+﻿@using Web.Models
+@model EntryViewModels
+
+@{
+	string title = @String.Format("{0}'s Blog", Model.Author);
+	ViewBag.Title = title;
+}
+
+<h2>@title</h2>
+
+@foreach (EntryViewModel entry in Model.Entries)
+{
+	Html.DisplayFor(m => entry.Title);
+	Html.DisplayFor(m => entry.Body);
+}
