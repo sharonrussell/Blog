@@ -10,6 +10,10 @@
 
 @foreach (EntryViewModel entry in Model.Entries)
 {
-	Html.DisplayFor(m => entry.Title);
-	Html.DisplayFor(m => entry.Body);
+	<section>
+		<h3>@Html.DisplayFor(m => entry.Title)</h3>
+	</section>
+	<section>
+		<p>@Html.DisplayFor(m => entry.Body)</p>
+	</section>
 }
