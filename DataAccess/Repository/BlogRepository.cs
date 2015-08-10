@@ -44,6 +44,31 @@ namespace DataAccess.Repository
             }
         }
 
+        public void RemoveEntry(Guid blogId, Guid entryId)
+        {
+            using (_context = _contextFactory.CreateContext())
+            {
+                Blog blog = _context.Blogs.Include(o => o.Entries).SingleOrDefault(b => b.BlogId == blogId);
+
+                if (blog == null)
+                {
+                    throw new ObjectDoesNotExistException("blog");
+                }
+
+                Entry entry = blog.Entries.SingleOrDefault(e => e.EntryId == entryId);
+
+                if (entry == null)
+                {
+                    throw new ObjectDoesNotExistException("entry");
+                }
+
+                blog.RemoveEntry(entry.EntryId);
+
+                _context.Entries.Remove(entry);
+                _context.SaveChanges();
+            }
+        }
+
         public IList<Blog> GetBlogs()
         {
             using (_context = _contextFactory.CreateContext())
