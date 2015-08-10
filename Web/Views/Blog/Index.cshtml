@@ -2,19 +2,23 @@
 @model EntryViewModels
 
 @{
+	Layout = "/Views/_Layout.cshtml";
 	string title = @String.Format("{0}'s Blog", Model.Author);
 	ViewBag.Title = title;
 }
+<section class="jumbotron">
+	<h2>@title</h2>
+	<a href='@Url.Action("AddEntry", "Blog", new {id = Model.BlogId})'>Add new blog entry</a>
 
-<h2>@title</h2>
-<a href='@Url.Action("AddEntry", "Blog", new { id = Model.BlogId })'>Add new blog entry</a>
-
-@foreach (EntryViewModel entry in Model.Entries)
-{
-	<section>
-		<h3>@Html.DisplayFor(m => entry.Title)</h3>
-	</section>
-	<section>
-		<p>@Html.DisplayFor(m => entry.Body)</p>
-	</section>
-}
+	@foreach (EntryViewModel entry in Model.Entries)
+	{
+		<section class="panel">
+			<section>
+				<h3>@Html.DisplayFor(m => entry.Title)</h3>
+			</section>
+			<section>
+				<p>@Html.DisplayFor(m => entry.Body)</p>
+			</section>
+		</section>
+	}
+</section>
