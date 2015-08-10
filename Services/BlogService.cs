@@ -43,6 +43,18 @@ namespace Services
             }
         }
 
+        public void RemoveEntry(Guid blogId, Guid entryId)
+        {
+            try
+            {
+                _blogRepository.RemoveEntry(blogId, entryId);
+            }
+            catch (ObjectDoesNotExistException ex)
+            {
+                throw new FaultException<ObjectDoesNotExistException>(ex);
+            }
+        }
+
         public IEnumerable<BlogDto> GetBlogs()
         {
             List<BlogDto> blogs = new List<BlogDto>();

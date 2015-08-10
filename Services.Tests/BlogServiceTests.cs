@@ -74,5 +74,23 @@ namespace Services.Tests
             Assert.That(blog.Entries, Is.Not.Null);
             Assert.That(blog.Entries.FirstOrDefault(o => o.Body == "body"), Is.Not.Null);
         }
+
+        [Test]
+        public void When_RemovingEntry_Should_RemoveEntry()
+        {
+            _blogService.RemoveEntry(It.IsAny<Guid>(), It.IsAny<Guid>());
+
+            _blogRepository.Verify(o => o.RemoveEntry(It.IsAny<Guid>(), It.IsAny<Guid>()), Times.Once);
+        }
+
+        [Test]
+        public void When_RemovingEntry_AndCannotFindBlogOrEntry_Should_Error()
+        {
+            _blogRepository.Setup(o => o.RemoveEntry(It.IsAny<Guid>(), It.IsAny<Guid>()))
+                .Throws<ObjectDoesNotExistException>();
+
+            Assert.Throws<FaultException<ObjectDoesNotExistException>>(
+                () => _blogService.RemoveEntry(It.IsAny<Guid>(), It.IsAny<Guid>()));
+        }
     }
 }

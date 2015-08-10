@@ -13,6 +13,10 @@ namespace Services
         void AddEntry(Guid blogId, string title, string body);
 
         [OperationContract]
+        [FaultContract(typeof (ObjectDoesNotExistException))]
+        void RemoveEntry(Guid blogId, Guid entryId);
+
+        [OperationContract]
         IEnumerable<BlogDto> GetBlogs();
     }
 }
