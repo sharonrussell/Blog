@@ -70,5 +70,12 @@ namespace Web.Controllers
 
             return RedirectToAction("Index", "Blog", new {id = model.BlogId});
         }
+
+        public ActionResult RemoveEntry(Guid blogId, Guid entryId)
+        {
+            _service.RemoveEntry(blogId, entryId);
+
+            return RedirectToAction("Index", "Blog", new { id = blogId });
+        }
     }
 }

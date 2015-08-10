@@ -19,6 +19,7 @@
 			<section>
 				<p>@Html.DisplayFor(m => entry.Body)</p>
 			</section>
+			<a href='@Url.Action("RemoveEntry", "Blog", new {blogId = Model.BlogId, entryId = entry.EntryId})'>Remove entry</a>
 		</section>
 	}
 </section>
