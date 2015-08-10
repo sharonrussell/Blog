@@ -32,5 +32,23 @@ namespace Domain.Tests
         {
             Assert.Throws<ArgumentNullException>(() => _blog.AddEntry(null));
         }
+
+        [Test]
+        public void When_RemovingEntry_Should_RemoveFromEntries()
+        {
+            Entry entry = new Entry("title", "body");
+
+            _blog.AddEntry(entry);
+
+            _blog.RemoveEntry(entry.EntryId);
+
+            Assert.That(_blog.Entries.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void When_RemovingEntry_ThatCannotBeFound_ShouldError()
+        {
+            Assert.Throws<ArgumentException>(() => _blog.RemoveEntry(Guid.NewGuid()));
+        }
     }
 }
