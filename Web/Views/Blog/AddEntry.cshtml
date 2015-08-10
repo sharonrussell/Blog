@@ -12,11 +12,15 @@
 		@Html.HiddenFor(m => m.BlogId)
 		<section>
 			@Html.DisplayNameFor(m => m.Title)
-			@Html.TextBoxFor(m => m.Title)
+			<div>
+				@Html.TextBoxFor(m => m.Title)
+			</div>
 		</section>
 		<section>
 			@Html.DisplayNameFor(m => m.Body)
-			@Html.TextAreaFor(m => m.Body)
+			<div>
+				@Html.TextAreaFor(m => m.Body)
+			</div>
 		</section>
 		<section>
 			<input type="submit" value="Submit"/>
