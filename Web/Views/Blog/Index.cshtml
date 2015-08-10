@@ -7,6 +7,7 @@
 }
 
 <h2>@title</h2>
+<a href='@Url.Action("AddEntry", "Blog", new { id = Model.BlogId })'>Add new blog entry</a>
 
 @foreach (EntryViewModel entry in Model.Entries)
 {

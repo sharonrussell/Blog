@@ -1,0 +1,23 @@
+﻿@model Web.Models.EntryViewModel
+
+@{
+	string title = "Add new blog entry";
+	ViewBag.Title = @title;
+}
+
+<h2>@title</h2>
+@using (Html.BeginForm("AddEntry", "Blog", FormMethod.Post))
+{
+	@Html.HiddenFor(m => m.BlogId)
+	<section>
+		@Html.DisplayNameFor(m => m.Title)
+		@Html.TextBoxFor(m => m.Title)
+	</section>
+	<section>
+		@Html.DisplayNameFor(m => m.Body)
+		@Html.TextAreaFor(m => m.Body)
+	</section>
+	<section>
+		<input type="submit" value="Submit"/>
+	</section>
+}

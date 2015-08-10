@@ -17,6 +17,7 @@ namespace Web.Controllers
             _service = service;
         }
 
+        [HttpGet]
         public ActionResult Index(Guid id)
         {
             BlogDto blog = _service.GetBlogs().SingleOrDefault(b => b.BlogId == id);
@@ -42,6 +43,32 @@ namespace Web.Controllers
             }
 
             return View(entryViewModels);
+        }
+
+        [HttpGet]
+        public ActionResult AddEntry(Guid id)
+        {
+            BlogDto blog = _service.GetBlogs().SingleOrDefault(b => b.BlogId == id);
+
+            EntryViewModel viewModel = null;
+
+            if (blog != null)
+            {
+                viewModel = new EntryViewModel
+                {
+                    BlogId = blog.BlogId
+                };
+            }
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddEntry(EntryViewModel model)
+        {
+            _service.AddEntry(model.BlogId, model.Title, model.Body);
+
+            return RedirectToAction("Index", "Blog", new {id = model.BlogId});
         }
     }
 }

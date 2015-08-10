@@ -2,10 +2,11 @@
 @model IEnumerable<BlogViewModel>
 
 @{
-	ViewBag.Title = "Blogs";
+	string title = "Blogs";
+	ViewBag.Title = @title;
 }
 
-<h2>Blogs</h2>
+<h2>@title</h2>
 
 @foreach (BlogViewModel model in Model)
 {
