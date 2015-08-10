@@ -63,5 +63,41 @@ namespace DataAccess.Tests.Integration
                 Assert.That(entry.Body, Is.EqualTo("body"));
             }
         }
+
+        [Test]
+        public void When_DeletingEntryFromBlog_Should_DeleteFromDB()
+        {
+            Blog blog = new Blog("Sharon");
+            Entry entry = new Entry("title", "body");
+
+            using (_context = new TestBlogContext())
+            {
+                _context.Blogs.Add(blog);
+                blog.AddEntry(entry);
+
+                _context.Entries.Add(entry);
+                _context.SaveChanges();
+            }
+
+            using (_context = new TestBlogContext())
+            {
+                blog = _context.Blogs.Include(b => b.Entries).Single(b => b.BlogId == blog.BlogId);
+                entry = _context.Entries.Single(e => e.EntryId == entry.EntryId);
+
+                blog.RemoveEntry(entry.EntryId);
+
+                _context.Entries.Remove(entry);
+                _context.SaveChanges();
+            }
+
+            using (_context = new TestBlogContext())
+            {
+                blog = _context.Blogs.Include(b => b.Entries).Single(b => b.BlogId == blog.BlogId);
+                entry = _context.Entries.SingleOrDefault(e => e.EntryId == entry.EntryId);
+
+                Assert.That(entry, Is.Null);
+                Assert.That(blog.Entries.Count, Is.EqualTo(0));
+            }
+        }
     }
 }
