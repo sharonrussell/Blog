@@ -6,23 +6,32 @@
 	string title = @String.Format("{0}'s Blog", Model.Author);
 	ViewBag.Title = title;
 }
-<section class="jumbotron">
-	<h2>@title</h2>
-	<a href='@Url.Action("AddEntry", "Entry", new {id = Model.BlogId})'>Add new blog entry</a>
-
-	@foreach (EntryViewModel entry in Model.Entries)
-	{
-		<section class="panel">
-			<section>
-				<h3>@Html.DisplayFor(m => entry.Title)</h3>
-			</section>
-			<section>
-				<p>@Html.Raw(Html.Encode(entry.Body).Replace("\n", "<br />"))</p>
-			</section>
-			<a href='@Url.Action("RemoveEntry", "Entry", new {blogId = Model.BlogId, entryId = entry.EntryId})'>Remove entry</a>
-		</section>
-	}
-	<section>
-		<a href='@Url.Action("RemoveBlog", "Blog", new {id = Model.BlogId})'>Remove blog</a>
-	</section>
+<section>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span9">
+				@foreach (EntryViewModel entry in Model.Entries)
+				{
+					<section>
+						<section>
+							<h3>@Html.DisplayFor(m => entry.Title)</h3>
+						</section>
+						<section>
+							<p>@Html.Raw(Html.Encode(entry.Body).Replace("\n", "<br />"))</p>
+						</section>
+						<a href='@Url.Action("RemoveEntry", "Entry", new {blogId = Model.BlogId, entryId = entry.EntryId})'>Remove entry</a>
+					</section>
+				}
+			</div>
+			<div class="span3">
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<li class="nav-header">@title</li>
+						<li>@Html.ActionLink("Add Entry", "AddEntry", "Entry", new { id = Model.BlogId }, new { })</li>
+						<li>@Html.ActionLink("Remove Blog", "RemoveBlog", "Blog", new { id = Model.BlogId }, new { })</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>

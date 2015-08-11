@@ -5,7 +5,7 @@
 	string title = "Add new blog entry";
 	ViewBag.Title = @title;
 }
-<section class="jumbotron">
+<section>
 	<h2>@title</h2>
 	@using (Html.BeginForm("AddEntry", "Entry", FormMethod.Post))
 	{
