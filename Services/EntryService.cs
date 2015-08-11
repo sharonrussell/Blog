@@ -7,11 +7,11 @@ namespace Services
 {
     public class EntryService : IEntryService
     {
-        private readonly IBlogRepository _blogRepository;
+        private readonly IEntryRepository _entryRepository;
 
-        public EntryService(IBlogRepository blogRepository)
+        public EntryService(IEntryRepository entryRepository)
         {
-            _blogRepository = blogRepository;
+            _entryRepository = entryRepository;
         }
 
         public void AddEntry(Guid blogId, string title, string body)
@@ -28,7 +28,7 @@ namespace Services
 
             try
             {
-                _blogRepository.AddEntry(blogId, title, body);
+                _entryRepository.AddEntry(blogId, title, body);
             }
             catch (ObjectDoesNotExistException ex)
             {
@@ -40,7 +40,7 @@ namespace Services
         {
             try
             {
-                _blogRepository.RemoveEntry(blogId, entryId);
+                _entryRepository.RemoveEntry(blogId, entryId);
             }
             catch (ObjectDoesNotExistException ex)
             {

@@ -12,9 +12,9 @@ using NUnit.Framework;
 namespace DataAccess.Tests.UnitTests
 {
     [TestFixture]
-    public class BlogRepositoryTests
+    public class EntryRepositoryTests
     {
-        private IBlogRepository _blogRepository;
+        private IEntryRepository _entryRepository;
 
         private readonly Mock<IContextFactory> _contextFactory = new Mock<IContextFactory>();
         private readonly Mock<BlogContext> _context = new Mock<BlogContext>(); 
@@ -35,13 +35,13 @@ namespace DataAccess.Tests.UnitTests
 
             _contextFactory.Setup(o => o.CreateContext()).Returns(_context.Object);
 
-            _blogRepository = new BlogRepository(_contextFactory.Object);
+            _entryRepository = new EntryRepository(_contextFactory.Object);
         }
 
         [Test]
         public void When_AddingEntry_Should_AddToDB()
         {
-            _blogRepository.AddEntry(_blog.BlogId, "title", "body");
+            _entryRepository.AddEntry(_blog.BlogId, "title", "body");
 
             _context.Verify(o => o.SaveChanges(), Times.Once);
         }
@@ -49,13 +49,13 @@ namespace DataAccess.Tests.UnitTests
         [Test]
         public void When_AddingEntry_WithBlankTitle_Should_Error()
         {
-            Assert.Throws<ArgumentNullException>(() => _blogRepository.AddEntry(It.IsAny<Guid>(), "", "body"));
+            Assert.Throws<ArgumentNullException>(() => _entryRepository.AddEntry(It.IsAny<Guid>(), "", "body"));
         }
 
         [Test]
         public void When_AddingEntry_WithBlankBody_Should_Error()
         {
-            Assert.Throws<ArgumentNullException>(() => _blogRepository.AddEntry(It.IsAny<Guid>(), "title", ""));
+            Assert.Throws<ArgumentNullException>(() => _entryRepository.AddEntry(It.IsAny<Guid>(), "title", ""));
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace DataAccess.Tests.UnitTests
             _blogs = new List<Blog>().AsQueryable();
 
             _context.Verify(o => o.SaveChanges(), Times.Never);
-            Assert.Throws<ObjectDoesNotExistException>(() =>_blogRepository.AddEntry(It.IsAny<Guid>(), "title", "body"));
+            Assert.Throws<ObjectDoesNotExistException>(() =>_entryRepository.AddEntry(It.IsAny<Guid>(), "title", "body"));
         }
 
         private void MockDbSets()

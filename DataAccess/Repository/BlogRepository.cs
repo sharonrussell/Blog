@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using DataAccess.Context;
-using DataAccess.Exceptions;
 using Domain;
 
 namespace DataAccess.Repository
@@ -19,74 +17,12 @@ namespace DataAccess.Repository
             _contextFactory = contextFactory;
         }
 
-        public void AddEntry(Guid blogId, string title, string body)
-        {
-            if (title == null)
-            {
-                throw new ArgumentNullException("title");
-            }
-
-            if (body == null)
-            {
-                throw new ArgumentNullException("body");
-            }
-
-            using (_context = _contextFactory.CreateContext())
-            {
-                Entry entry = new Entry(title, body);
-
-                Blog blog = GetBlog(blogId);
-                
-                blog.AddEntry(entry);
-
-                _context.Entries.Add(entry);
-                _context.SaveChanges();
-            }
-        }
-
-        public void RemoveEntry(Guid blogId, Guid entryId)
-        {
-            using (_context = _contextFactory.CreateContext())
-            {
-                Blog blog = _context.Blogs.Include(o => o.Entries).SingleOrDefault(b => b.BlogId == blogId);
-
-                if (blog == null)
-                {
-                    throw new ObjectDoesNotExistException("blog");
-                }
-
-                Entry entry = blog.Entries.SingleOrDefault(e => e.EntryId == entryId);
-
-                if (entry == null)
-                {
-                    throw new ObjectDoesNotExistException("entry");
-                }
-
-                blog.RemoveEntry(entry.EntryId);
-
-                _context.Entries.Remove(entry);
-                _context.SaveChanges();
-            }
-        }
-
         public IList<Blog> GetBlogs()
         {
             using (_context = _contextFactory.CreateContext())
             {
                 return _context.Blogs.Include(b => b.Entries).ToList();
             }
-        }
-
-        private Blog GetBlog(Guid blogId)
-        {
-            Blog blog = _context.Blogs.SingleOrDefault(b => b.BlogId == blogId);
-
-            if (blog == null)
-            {
-                throw new ObjectDoesNotExistException();
-            }
-
-            return blog;
         }
     }
 }
