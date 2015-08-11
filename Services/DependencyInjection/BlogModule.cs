@@ -11,6 +11,9 @@ namespace Services.DependencyInjection
             Bind<IBlogRepository>().To<BlogRepository>();
             Bind<IContextFactory>().To<ContextFactory>();
             Bind<IBlogService>().To<BlogService>();
+
+            Bind<IEntryRepository>().To<EntryRepository>();
+            Bind<IEntryService>().To<EntryService>();
         }
     }
 }
