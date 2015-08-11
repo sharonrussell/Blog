@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -43,39 +42,6 @@ namespace Web.Controllers
             }
 
             return View(entryViewModels);
-        }
-
-        [HttpGet]
-        public ActionResult AddEntry(Guid id)
-        {
-            BlogDto blog = _service.GetBlogs().SingleOrDefault(b => b.BlogId == id);
-
-            EntryViewModel viewModel = null;
-
-            if (blog != null)
-            {
-                viewModel = new EntryViewModel
-                {
-                    BlogId = blog.BlogId
-                };
-            }
-
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        public ActionResult AddEntry(EntryViewModel model)
-        {
-            _service.AddEntry(model.BlogId, model.Title, model.Body);
-
-            return RedirectToAction("Index", "Blog", new {id = model.BlogId});
-        }
-
-        public ActionResult RemoveEntry(Guid blogId, Guid entryId)
-        {
-            _service.RemoveEntry(blogId, entryId);
-
-            return RedirectToAction("Index", "Blog", new { id = blogId });
         }
     }
 }

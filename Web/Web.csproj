@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -183,7 +184,7 @@
     <Content Include="Views\Blog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Blog\AddEntry.cshtml" />
+    <Content Include="Views\Entry\AddEntry.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

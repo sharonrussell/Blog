@@ -7,7 +7,7 @@
 }
 <section class="jumbotron">
 	<h2>@title</h2>
-	@using (Html.BeginForm("AddEntry", "Blog", FormMethod.Post))
+	@using (Html.BeginForm("AddEntry", "Entry", FormMethod.Post))
 	{
 		@Html.HiddenFor(m => m.BlogId)
 		<section>
