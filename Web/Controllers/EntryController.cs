@@ -7,9 +7,9 @@ namespace Web.Controllers
 {
     public class EntryController : Controller
     {
-        private readonly IBlogService _service;
+        private readonly IEntryService _service;
 
-        public EntryController(IBlogService service)
+        public EntryController(IEntryService service)
         {
             _service = service;
         }

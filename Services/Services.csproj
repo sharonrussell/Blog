@@ -52,7 +52,9 @@
     <Compile Include="DependencyInjection\BlogModule.cs" />
     <Compile Include="BlogService.cs" />
     <Compile Include="EntryDto.cs" />
+    <Compile Include="EntryService.cs" />
     <Compile Include="IBlogService.cs" />
+    <Compile Include="IEntryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
