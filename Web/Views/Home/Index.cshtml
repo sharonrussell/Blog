@@ -2,12 +2,12 @@
 @model IEnumerable<BlogViewModel>
 
 @{
-	Layout = "/Views/_Layout.cshtml";
+	Layout = "../Shared/_Layout.cshtml";
 	string title = "Blogs";
 	ViewBag.Title = @title;
 }
 
-<section>
+<section class="jumbotron">
 	<h2>@title</h2>
 	<section>
 		@foreach (BlogViewModel model in Model)

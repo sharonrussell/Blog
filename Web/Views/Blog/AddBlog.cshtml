@@ -2,12 +2,12 @@
 @{
 	string title = "Add Blog";
 	ViewBag.Title = @title;
-	Layout = "../_Layout.cshtml";
+	Layout = "../Shared/_Layout.cshtml";
 }
 
 @using (Html.BeginForm("AddBlog", "Blog", FormMethod.Post))
 {
-	<section>
+	<section class="jumbotron">
 		<h2>@title</h2>
 		<section>
 			@Html.DisplayNameFor(m => m.Author)
