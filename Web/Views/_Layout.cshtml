@@ -1,9 +1,15 @@
 ﻿<html>
 <head>
 	<link rel="stylesheet" type="text/css" href="/Content/bootstrap.min.css">
-	<title></title>
+	<title>@ViewBag.Title</title>
 </head>
 <body>
-	@RenderBody()
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li>@Html.ActionLink("Home", "Index", "Home")</li>
+			<li>@Html.ActionLink("Add Blog", "AddBlog", "Blog")</li>
+		</ul>
+	</div>
+@RenderBody()
 </body>
 </html>

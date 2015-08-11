@@ -6,7 +6,7 @@
 	string title = @String.Format("{0}'s Blog", Model.Author);
 	ViewBag.Title = title;
 }
-<section class="jumbotron">
+<section>
 	<h2>@title</h2>
 	<a href='@Url.Action("AddEntry", "Entry", new {id = Model.BlogId})'>Add new blog entry</a>
 
