@@ -13,6 +13,7 @@ namespace Services
         [OperationContract]
         void AddBlog(BlogDto blog);
 
+        [OperationContract]
         void RemoveBlog(Guid blogId);
     }
 }
