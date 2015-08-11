@@ -51,5 +51,21 @@ namespace DataAccess.Tests.Integration
             Assert.That(dbBlog.Entries.Count(), Is.EqualTo(1));
             Assert.That(dbBlog.Entries.FirstOrDefault(o => o.EntryId == entry.EntryId), Is.Not.Null);
         }
+
+        [Test]
+        public void When_AddingBlog_Should_AddToDB()
+        {
+            Blog blog = new Blog("Sharon");
+
+            _repository.AddBlog(blog);
+
+            using (_context = new TestBlogContext())
+            {
+                IEnumerable<Blog> blogs = _context.Blogs;
+                blog = blogs.SingleOrDefault(b => b.BlogId == blog.BlogId);
+            }
+
+            Assert.That(blog, Is.Not.Null);
+        }
     }
 }

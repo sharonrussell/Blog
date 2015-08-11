@@ -6,5 +6,7 @@ namespace DataAccess.Repository
     public interface IBlogRepository
     {
         IList<Blog> GetBlogs();
+
+        void AddBlog(Blog blog);
     }
 }

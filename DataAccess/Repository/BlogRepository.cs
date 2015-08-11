@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using DataAccess.Context;
@@ -22,6 +23,20 @@ namespace DataAccess.Repository
             using (_context = _contextFactory.CreateContext())
             {
                 return _context.Blogs.Include(b => b.Entries).ToList();
+            }
+        }
+
+        public void AddBlog(Blog blog)
+        {
+            if (blog == null)
+            {
+                throw new ArgumentNullException("blog");
+            }
+
+            using (_context = _contextFactory.CreateContext())
+            {
+                _context.Blogs.Add(blog);
+                _context.SaveChanges();
             }
         }
     }

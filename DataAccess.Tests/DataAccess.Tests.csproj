@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Integration\BlogContextIntegrationTests.cs" />
     <Compile Include="Integration\BlogRepositoryIntegrationTests.cs" />
+    <Compile Include="UnitTests\BlogRepositoryTests.cs" />
     <Compile Include="UnitTests\EntryRepositoryTests.cs" />
     <Compile Include="Integration\EntryRepositoryIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
