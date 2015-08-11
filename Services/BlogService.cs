@@ -11,10 +11,10 @@ namespace Services
         private readonly IBlogRepository _blogRepository;
         private readonly IEntryRepository _entryRepository;
 
-        public BlogService(IBlogRepository blogRepository, IEntryRepository _entryRepository)
+        public BlogService(IBlogRepository blogRepository, IEntryRepository entryRepository)
         {
             _blogRepository = blogRepository;
-            this._entryRepository = _entryRepository;
+            _entryRepository = entryRepository;
         }
 
         protected BlogService()
@@ -31,7 +31,7 @@ namespace Services
             {
                 List<EntryDto> entryDtos = new List<EntryDto>();
 
-                entryDtos.AddRange(dbBlog.Entries.Select(entry => new EntryDto
+                entryDtos.AddRange(_entryRepository.GetEntries(dbBlog.BlogId).Select(entry => new EntryDto
                 {
                     BlogId = dbBlog.BlogId, 
                     EntryId = entry.EntryId, 
