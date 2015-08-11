@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
-using DataAccess.Exceptions;
 using DataAccess.Repository;
 using Domain;
 
@@ -11,10 +9,12 @@ namespace Services
     public class BlogService : IBlogService
     {
         private readonly IBlogRepository _blogRepository;
+        private readonly IEntryRepository _entryRepository;
 
-        public BlogService(IBlogRepository blogRepository)
+        public BlogService(IBlogRepository blogRepository, IEntryRepository _entryRepository)
         {
             _blogRepository = blogRepository;
+            this._entryRepository = _entryRepository;
         }
 
         protected BlogService()
@@ -23,31 +23,38 @@ namespace Services
 
         public IEnumerable<BlogDto> GetBlogs()
         {
-            List<BlogDto> blogs = new List<BlogDto>();
-            List<EntryDto> entries = new List<EntryDto>();
             IEnumerable<Blog> dbBlogs = _blogRepository.GetBlogs();
+
+            List<BlogDto> blogDtos = new List<BlogDto>();
 
             foreach (Blog dbBlog in dbBlogs)
             {
-                BlogDto blogDto = new BlogDto
-                {
-                    Author = dbBlog.Author,
-                    BlogId = dbBlog.BlogId
-                };
+                List<EntryDto> entryDtos = new List<EntryDto>();
 
-                entries.AddRange(dbBlog.Entries.Select(entry => new EntryDto
+                entryDtos.AddRange(dbBlog.Entries.Select(entry => new EntryDto
                 {
-                    BlogId = entry.BlogId, 
+                    BlogId = dbBlog.BlogId, 
                     EntryId = entry.EntryId, 
                     Body = entry.Body, 
                     Title = entry.Title
                 }));
 
-                blogDto.Entries = entries;
-                blogs.Add(blogDto);
+                blogDtos.Add(new BlogDto
+                {
+                    Author = dbBlog.Author,
+                    BlogId = dbBlog.BlogId,
+                    Entries = entryDtos
+                });
             }
 
-            return blogs;
+            return blogDtos;
+        }
+
+        public void AddBlog(BlogDto blogDto)
+        {
+            Blog blog = new Blog(blogDto.Author);
+
+            _blogRepository.AddBlog(blog);
         }
     }
 }

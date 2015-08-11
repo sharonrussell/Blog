@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using DataAccess.Context;
@@ -72,5 +73,13 @@ namespace DataAccess.Repository
                 _context.SaveChanges();
             }
         }
+
+        public IEnumerable<Entry> GetEntries(Guid blogId)
+        {
+            using (_context = _contextFactory.CreateContext())
+            {
+                return _context.Entries.Where(e => e.BlogId == blogId).ToList();
+            }
+        } 
     }
 }

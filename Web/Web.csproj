@@ -161,6 +161,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-1.9.0.min.map" />
     <Content Include="Views\_Layout.cshtml" />
+    <Content Include="Views\Blog\AddBlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

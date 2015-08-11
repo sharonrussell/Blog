@@ -1,0 +1,21 @@
+﻿@model Web.Models.BlogViewModel
+@{
+	string title = "Add Blog";
+	ViewBag.Title = @title;
+	Layout = "../_Layout.cshtml";
+}
+
+<h2>@title</h2>
+
+@using (Html.BeginForm("AddBlog", "Blog", FormMethod.Post))
+{
+	<section>
+		@Html.DisplayNameFor(m => m.Author)
+		@Html.TextBoxFor(m => m.Author)
+	</section>
+	<section>
+		<section>
+			<input type="submit" value="Submit" />
+		</section>
+	</section>
+}

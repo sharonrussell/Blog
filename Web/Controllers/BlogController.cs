@@ -43,5 +43,26 @@ namespace Web.Controllers
 
             return View(entryViewModels);
         }
+
+        [HttpGet]
+        public ActionResult AddBlog()
+        {
+            BlogViewModel viewModel = new BlogViewModel();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddBlog(BlogViewModel model)
+        {
+            BlogDto blog = new BlogDto
+            {
+                Author = model.Author
+            };
+
+            _service.AddBlog(blog);
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

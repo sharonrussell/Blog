@@ -19,11 +19,11 @@ namespace Web.Controllers
         {
             IEnumerable<BlogDto> blogs = _blogService.GetBlogs();
 
-            List<BlogViewModel> blogViewModels = blogs.Select(blog => new BlogViewModel
+            IEnumerable<BlogViewModel> blogViewModels = blogs.Select(blog => new BlogViewModel
             {
                 BlogId = blog.BlogId, 
                 Author = blog.Author
-            }).ToList();
+            });
 
             return View(blogViewModels);
         }

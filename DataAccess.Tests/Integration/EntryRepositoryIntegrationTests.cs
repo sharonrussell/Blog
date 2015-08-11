@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using DataAccess.Context;
 using DataAccess.Repository;
@@ -72,6 +74,29 @@ namespace DataAccess.Tests.Integration
 
                 Assert.That(_blog.Entries.Count, Is.EqualTo(0));
             }
+        }
+
+        [Test]
+        public void When_GettingEntries_Should_GetFromDB()
+        {
+            Blog blog = new Blog("Sharon");
+
+            Entry entry = new Entry("title", "body");
+
+            using (_context = new TestBlogContext())
+            {
+                _context.Blogs.Add(blog);
+                _context.SaveChanges();
+
+                blog.AddEntry(entry);
+                _context.Entries.Add(entry);
+
+                _context.SaveChanges();
+            }
+
+            IEnumerable<Entry> entries = _repository.GetEntries(blog.BlogId);
+
+            Assert.That(entries.Count(), Is.EqualTo(1));
         }
     }
 }

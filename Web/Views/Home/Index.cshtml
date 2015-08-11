@@ -9,10 +9,14 @@
 
 <section class="jumbotron">
 	<h2>@title</h2>
-
-	@foreach (BlogViewModel model in Model)
-	{
-		string authorLink = String.Format("View {0}'s blog", model.Author);
-		<a href='@Url.Action("Index", "Blog", new {id = model.BlogId})'>@authorLink</a>
-	}
+	<section>
+		@foreach (BlogViewModel model in Model)
+		{
+			string authorLink = String.Format("View {0}'s blog", model.Author);
+			<section>
+				<a href='@Url.Action("Index", "Blog", new {id = model.BlogId})'>@authorLink</a>
+			</section>
+		}
+	</section>
+	<a href='@Url.Action("AddBlog", "Blog")'>Add blog</a>
 </section>

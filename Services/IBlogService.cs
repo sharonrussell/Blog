@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using Domain;
 
 namespace Services
 {
@@ -8,5 +9,8 @@ namespace Services
     {
         [OperationContract]
         IEnumerable<BlogDto> GetBlogs();
+
+        [OperationContract]
+        void AddBlog(BlogDto blog);
     }
 }
