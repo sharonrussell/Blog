@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
-using Domain;
 
 namespace Services
 {
@@ -12,5 +12,7 @@ namespace Services
 
         [OperationContract]
         void AddBlog(BlogDto blog);
+
+        void RemoveBlog(Guid blogId);
     }
 }

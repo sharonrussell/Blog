@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataAccess.Repository;
 using Domain;
@@ -54,6 +55,14 @@ namespace Services.Tests
             });
 
             _blogRepository.Verify(o => o.AddBlog(It.IsAny<Blog>()), Times.Once);
+        }
+
+        [Test]
+        public void When_DeletingBlog_Should_DeleteFromBlogs()
+        {
+            _blogService.RemoveBlog(It.IsAny<Guid>());
+
+            _blogRepository.Verify(o => o.RemoveBlog(It.IsAny<Guid>()), Times.Once);
         }
     }
 }

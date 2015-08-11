@@ -39,5 +39,16 @@ namespace DataAccess.Repository
                 _context.SaveChanges();
             }
         }
+
+        public void RemoveBlog(Guid blogId)
+        {
+            using (_context = _contextFactory.CreateContext())
+            {
+                Blog blog = _context.Blogs.SingleOrDefault(b => b.BlogId == blogId);
+
+                _context.Blogs.Remove(blog);
+                _context.SaveChanges();
+            }
+        }
     }
 }

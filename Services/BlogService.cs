@@ -56,5 +56,10 @@ namespace Services
 
             _blogRepository.AddBlog(blog);
         }
+
+        public void RemoveBlog(Guid blogId)
+        {
+            _blogRepository.RemoveBlog(blogId);
+        }
     }
 }

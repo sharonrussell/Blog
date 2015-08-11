@@ -67,5 +67,35 @@ namespace DataAccess.Tests.Integration
 
             Assert.That(blog, Is.Not.Null);
         }
+
+        [Test]
+        public void When_RemovingBlog_Should_RemoveFromDB()
+        {
+            Blog blog = new Blog("Sharon");
+
+            Entry entry = new Entry("title", "body");
+
+            using (_context = new TestBlogContext())
+            {
+                _context.Blogs.Add(blog);
+                _context.SaveChanges();
+
+                blog.AddEntry(entry);
+                _context.Entries.Add(entry);
+
+                _context.SaveChanges();
+            }
+
+            _repository.RemoveBlog(blog.BlogId);
+
+            using (_context = new TestBlogContext())
+            {
+                entry = _context.Entries.SingleOrDefault(e => e.BlogId == blog.BlogId);
+                blog = _context.Blogs.SingleOrDefault(b => b.BlogId == blog.BlogId);
+            }
+
+            Assert.That(blog, Is.Null);
+            Assert.That(entry, Is.Null);
+        }
     }
 }

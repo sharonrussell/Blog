@@ -5,17 +5,18 @@
 	Layout = "../_Layout.cshtml";
 }
 
-<h2>@title</h2>
-
 @using (Html.BeginForm("AddBlog", "Blog", FormMethod.Post))
 {
-	<section>
-		@Html.DisplayNameFor(m => m.Author)
-		@Html.TextBoxFor(m => m.Author)
-	</section>
-	<section>
+	<section class="jumbotron">
+		<h2>@title</h2>
 		<section>
-			<input type="submit" value="Submit" />
+			@Html.DisplayNameFor(m => m.Author)
+		</section>
+		<section>
+			@Html.TextBoxFor(m => m.Author)
+		</section>
+		<section>
+			<input type="submit" value="Submit"/>
 		</section>
 	</section>
 }

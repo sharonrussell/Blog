@@ -22,4 +22,7 @@
 			<a href='@Url.Action("RemoveEntry", "Entry", new {blogId = Model.BlogId, entryId = entry.EntryId})'>Remove entry</a>
 		</section>
 	}
+	<section>
+		<a href='@Url.Action("RemoveBlog", "Blog", new {id = Model.BlogId})'>Remove blog</a>
+	</section>
 </section>

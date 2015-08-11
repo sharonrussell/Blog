@@ -64,5 +64,12 @@ namespace Web.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult RemoveBlog(Guid id)
+        {
+            _service.RemoveBlog(id);
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
