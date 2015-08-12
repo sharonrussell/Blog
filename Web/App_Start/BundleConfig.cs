@@ -18,6 +18,9 @@ namespace Web
             bundles.Add(new StyleBundle("~/Content/bootstrapcss").Include(
                         "~/Content/bootstrap.min.css",
                         "~/Content/bootstrap-responsive.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/simple-sidebarcss").Include(
+            "~/Content/simple-sidebar.css"));
         }
     }
 }

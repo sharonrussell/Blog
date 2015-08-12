@@ -23,14 +23,13 @@
 					</section>
 				}
 			</div>
-			<div class="span3">
-				<div class="well sidebar-nav">
-					<ul class="nav nav-list">
-						<li class="nav-header">@title</li>
-						<li>@Html.ActionLink("Add Entry", "AddEntry", "Entry", new { id = Model.BlogId }, new { })</li>
-						<li>@Html.ActionLink("Remove Blog", "RemoveBlog", "Blog", new { id = Model.BlogId }, new { })</li>
-					</ul>
-				</div>
+			<div id="sidebar-wrapper">
+				<ul class="sidebar-nav">
+					<li class="sidebar-brand">@title</li>
+					<li>@Html.ActionLink("Add Entry", "AddEntry", "Entry", new { id = Model.BlogId }, new { })</li>
+					<li>@Html.ActionLink("Remove Blog", "RemoveBlog", "Blog", new {id = Model.BlogId}, new {})</li>
+					<li>@Html.ActionLink("Home", "Index", "Home")</li>
+				</ul>
 			</div>
 		</div>
 	</div>
