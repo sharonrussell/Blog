@@ -30,7 +30,8 @@ namespace Web.Controllers
                 {
                     EntryId = entry.EntryId,
                     Body = entry.Body,
-                    Title = entry.Title
+                    Title = entry.Title,
+                    Date = entry.Date
                 }));
 
                 entryViewModels = new EntryViewModels

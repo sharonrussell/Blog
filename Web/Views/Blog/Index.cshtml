@@ -14,7 +14,7 @@
 				{
 					<section>
 						<section>
-							<h3>@Html.DisplayFor(m => entry.Title)</h3>
+							<h3>@Html.DisplayFor(m => entry.Title) - @Html.DisplayFor(m => entry.Date)</h3>
 						</section>
 						<section>
 							<p>@Html.Raw(Html.Encode(entry.Body).Replace("\n", "<br />"))</p>

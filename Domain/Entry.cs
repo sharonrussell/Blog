@@ -19,6 +19,7 @@ namespace Domain
             Title = title;
             Body = body;
             EntryId = Guid.NewGuid();
+            Date = DateTime.Now;
         }
 
         protected Entry()
@@ -34,5 +35,7 @@ namespace Domain
         public Blog Blog { get; set; }
 
         public Guid BlogId { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

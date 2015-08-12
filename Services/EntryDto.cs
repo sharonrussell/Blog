@@ -17,5 +17,8 @@ namespace Services
 
         [DataMember]
         public string Body { get; set; }
+
+        [DataMember]
+        public DateTime Date { get; set; }
     }
 }

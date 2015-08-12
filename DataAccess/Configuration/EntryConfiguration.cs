@@ -24,6 +24,9 @@ namespace DataAccess.Configuration
             
             Property(e => e.Body)
                 .IsRequired();
+
+            Property(e => e.Date)
+                .IsRequired();
         }
     }
 }

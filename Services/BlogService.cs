@@ -36,8 +36,9 @@ namespace Services
                     BlogId = dbBlog.BlogId, 
                     EntryId = entry.EntryId, 
                     Body = entry.Body, 
-                    Title = entry.Title
-                }));
+                    Title = entry.Title,
+                    Date = entry.Date
+                }).OrderByDescending(e => e.Date));
 
                 blogDtos.Add(new BlogDto
                 {
