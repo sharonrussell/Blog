@@ -60,6 +60,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Integration\BlogContextIntegrationTests.cs" />
     <Compile Include="Integration\BlogRepositoryIntegrationTests.cs" />
     <Compile Include="UnitTests\BlogRepositoryTests.cs" />
