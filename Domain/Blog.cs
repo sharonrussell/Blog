@@ -11,6 +11,7 @@ namespace Domain
         public Blog(string author) : this()
         {
             Author = author;
+
         }
 
         protected Blog()
