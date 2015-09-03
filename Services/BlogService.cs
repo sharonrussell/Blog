@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DataAccess.Repository;
 using Domain;
@@ -58,7 +57,7 @@ namespace Services
             _blogRepository.AddBlog(blog);
         }
 
-        public void RemoveBlog(Guid blogId)
+        public void RemoveBlog(int blogId)
         {
             _blogRepository.RemoveBlog(blogId);
         }

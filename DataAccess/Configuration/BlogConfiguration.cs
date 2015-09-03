@@ -10,7 +10,7 @@ namespace DataAccess.Configuration
         {
             Property(b => b.BlogId)
                 .IsRequired()
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             HasKey(b => b.BlogId);
 

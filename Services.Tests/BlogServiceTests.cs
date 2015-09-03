@@ -27,17 +27,25 @@ namespace Services.Tests
             _entryRepository = new Mock<IEntryRepository>();
 
             _blogService = new BlogService(_blogRepository.Object, _entryRepository.Object);
-
-            _blog = new Blog("Sharon");
-            _blog.AddEntry(new Entry("title", "body"));
-
-            _blogs.Add(_blog);
-            _blogRepository.Setup(o => o.GetBlogs()).Returns(_blogs);
         }
 
         [Test]
         public void When_GettingBlogs_Should_ReturnBlogs()
         {
+            _blog = new Blog("Sharon")
+            {
+                BlogId = 1
+            };
+
+            _blog.AddEntry(new Entry("title", "body")
+            {
+                EntryId = 1
+            });
+
+            _blogs.Add(_blog);
+            _blogRepository.Setup(o => o.GetBlogs()).Returns(_blogs);
+            _entryRepository.Setup(o => o.GetEntries(_blog.BlogId)).Returns(_blog.Entries);
+
             IEnumerable<BlogDto> blogs = _blogService.GetBlogs().ToList();
             BlogDto blog = blogs.Single(o => o.BlogId == _blog.BlogId);
 
@@ -60,9 +68,9 @@ namespace Services.Tests
         [Test]
         public void When_DeletingBlog_Should_DeleteFromBlogs()
         {
-            _blogService.RemoveBlog(It.IsAny<Guid>());
+            _blogService.RemoveBlog(It.IsAny<int>());
 
-            _blogRepository.Verify(o => o.RemoveBlog(It.IsAny<Guid>()), Times.Once);
+            _blogRepository.Verify(o => o.RemoveBlog(It.IsAny<int>()), Times.Once);
         }
     }
 }

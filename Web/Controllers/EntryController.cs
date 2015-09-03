@@ -15,7 +15,7 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddEntry(Guid id)
+        public ActionResult AddEntry(int id)
         {
             var viewModel = new EntryViewModel
             {
@@ -33,7 +33,7 @@ namespace Web.Controllers
             return RedirectToAction("Index", "Blog", new { id = model.BlogId });
         }
 
-        public ActionResult RemoveEntry(Guid blogId, Guid entryId)
+        public ActionResult RemoveEntry(int blogId, int entryId)
         {
             _service.RemoveEntry(blogId, entryId);
 

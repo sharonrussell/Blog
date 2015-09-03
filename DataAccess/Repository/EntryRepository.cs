@@ -19,7 +19,7 @@ namespace DataAccess.Repository
             _contextFactory = contextFactory;
         }
 
-        public void AddEntry(Guid blogId, string title, string body)
+        public void AddEntry(int blogId, string title, string body)
         {
             if (String.IsNullOrWhiteSpace(title))
             {
@@ -49,7 +49,7 @@ namespace DataAccess.Repository
             }
         }
 
-        public void RemoveEntry(Guid blogId, Guid entryId)
+        public void RemoveEntry(int blogId, int entryId)
         {
             using (_context = _contextFactory.CreateContext())
             {
@@ -74,7 +74,7 @@ namespace DataAccess.Repository
             }
         }
 
-        public IEnumerable<Entry> GetEntries(Guid blogId)
+        public IEnumerable<Entry> GetEntries(int blogId)
         {
             using (_context = _contextFactory.CreateContext())
             {

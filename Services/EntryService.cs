@@ -18,7 +18,7 @@ namespace Services
         {
         }
 
-        public void AddEntry(Guid blogId, string title, string body)
+        public void AddEntry(int blogId, string title, string body)
         {
             if (String.IsNullOrWhiteSpace(title))
             {
@@ -40,7 +40,7 @@ namespace Services
             }
         }
 
-        public void RemoveEntry(Guid blogId, Guid entryId)
+        public void RemoveEntry(int blogId, int entryId)
         {
             try
             {

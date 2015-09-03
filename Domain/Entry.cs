@@ -18,7 +18,6 @@ namespace Domain
 
             Title = title;
             Body = body;
-            EntryId = Guid.NewGuid();
             Date = DateTime.Now;
         }
 
@@ -30,11 +29,11 @@ namespace Domain
 
         public string Body { get; set; }
 
-        public Guid EntryId { get; private set; }
+        public int EntryId { get; set; }
 
         public Blog Blog { get; set; }
 
-        public Guid BlogId { get; set; }
+        public int BlogId { get; set; }
 
         public DateTime Date { get; set; }
     }

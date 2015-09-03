@@ -12,7 +12,7 @@ namespace DataAccess.Configuration
 
             Property(e => e.EntryId)
                 .IsRequired()
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             HasRequired(e => e.Blog)
                 .WithMany(b => b.Entries)

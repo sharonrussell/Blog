@@ -17,9 +17,9 @@ namespace DataAccess.Tests.UnitTests
         private IEntryRepository _entryRepository;
 
         private readonly Mock<IContextFactory> _contextFactory = new Mock<IContextFactory>();
-        private readonly Mock<BlogContext> _context = new Mock<BlogContext>(); 
+        private readonly Mock<BlogContext> _context = new Mock<BlogContext>();
 
-        private readonly Blog _blog = new Blog("Sharon");
+        private readonly Blog _blog = new Blog("Sharon") {BlogId = 1};
         private readonly Mock<DbSet<Blog>> _blogSet = new Mock<DbSet<Blog>>();
         private readonly Mock<DbSet<Entry>> _entrySet = new Mock<DbSet<Entry>>();
 
@@ -49,13 +49,13 @@ namespace DataAccess.Tests.UnitTests
         [Test]
         public void When_AddingEntry_WithBlankTitle_Should_Error()
         {
-            Assert.Throws<ArgumentNullException>(() => _entryRepository.AddEntry(It.IsAny<Guid>(), "", "body"));
+            Assert.Throws<ArgumentNullException>(() => _entryRepository.AddEntry(It.IsAny<int>(), "", "body"));
         }
 
         [Test]
         public void When_AddingEntry_WithBlankBody_Should_Error()
         {
-            Assert.Throws<ArgumentNullException>(() => _entryRepository.AddEntry(It.IsAny<Guid>(), "title", ""));
+            Assert.Throws<ArgumentNullException>(() => _entryRepository.AddEntry(It.IsAny<int>(), "title", ""));
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace DataAccess.Tests.UnitTests
             _blogs = new List<Blog>().AsQueryable();
 
             _context.Verify(o => o.SaveChanges(), Times.Never);
-            Assert.Throws<ObjectDoesNotExistException>(() =>_entryRepository.AddEntry(It.IsAny<Guid>(), "title", "body"));
+            Assert.Throws<ObjectDoesNotExistException>(() =>_entryRepository.AddEntry(It.IsAny<int>(), "title", "body"));
         }
 
         private void MockDbSets()

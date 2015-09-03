@@ -17,7 +17,7 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(Guid id)
+        public ActionResult Index(int id)
         {
             BlogDto blog = _service.GetBlogs().SingleOrDefault(b => b.BlogId == id);
 
@@ -66,7 +66,7 @@ namespace Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult RemoveBlog(Guid id)
+        public ActionResult RemoveBlog(int id)
         {
             _service.RemoveBlog(id);
 

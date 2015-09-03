@@ -25,47 +25,47 @@ namespace Services.Tests
         [Test]
         public void When_AddingEntry_Should_AddToBlogRepository()
         {
-            _entryService.AddEntry(Guid.NewGuid(), "title", "body");
+            _entryService.AddEntry(It.IsAny<int>(), "title", "body");
 
-            _entryRepository.Verify(o => o.AddEntry(It.IsAny<Guid>(), "title", "body"), Times.Once);
+            _entryRepository.Verify(o => o.AddEntry(It.IsAny<int>(), "title", "body"), Times.Once);
         }
 
         [Test]
         public void When_AddingEntryWithNullTitle_Should_Error()
         {
-            Assert.Throws<ArgumentNullException>(() => _entryService.AddEntry(It.IsAny<Guid>(), "", "body"));
+            Assert.Throws<ArgumentNullException>(() => _entryService.AddEntry(It.IsAny<int>(), "", "body"));
         }
 
         [Test]
         public void When_AddingEntryWithNullBody_Should_Error()
         {
-            Assert.Throws<ArgumentNullException>(() => _entryService.AddEntry(It.IsAny<Guid>(), "title", ""));
+            Assert.Throws<ArgumentNullException>(() => _entryService.AddEntry(It.IsAny<int>(), "title", ""));
         }
 
         [Test]
         public void When_AddingEntryToBlogThatCantBeFound_ShouldError()
         {
-            _entryRepository.Setup(o => o.AddEntry(It.IsAny<Guid>(), "title", "body")).Throws<ObjectDoesNotExistException>();
+            _entryRepository.Setup(o => o.AddEntry(It.IsAny<int>(), "title", "body")).Throws<ObjectDoesNotExistException>();
 
-            Assert.Throws<FaultException<ObjectDoesNotExistException>>(() => _entryService.AddEntry(It.IsAny<Guid>(), "title", "body"));
+            Assert.Throws<FaultException<ObjectDoesNotExistException>>(() => _entryService.AddEntry(It.IsAny<int>(), "title", "body"));
         }
 
         [Test]
         public void When_RemovingEntry_Should_RemoveEntry()
         {
-            _entryService.RemoveEntry(It.IsAny<Guid>(), It.IsAny<Guid>());
+            _entryService.RemoveEntry(It.IsAny<int>(), It.IsAny<int>());
 
-            _entryRepository.Verify(o => o.RemoveEntry(It.IsAny<Guid>(), It.IsAny<Guid>()), Times.Once);
+            _entryRepository.Verify(o => o.RemoveEntry(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
         }
 
         [Test]
         public void When_RemovingEntry_AndCannotFindBlogOrEntry_Should_Error()
         {
-            _entryRepository.Setup(o => o.RemoveEntry(It.IsAny<Guid>(), It.IsAny<Guid>()))
+            _entryRepository.Setup(o => o.RemoveEntry(It.IsAny<int>(), It.IsAny<int>()))
                 .Throws<ObjectDoesNotExistException>();
 
             Assert.Throws<FaultException<ObjectDoesNotExistException>>(
-                () => _entryService.RemoveEntry(It.IsAny<Guid>(), It.IsAny<Guid>()));
+                () => _entryService.RemoveEntry(It.IsAny<int>(), It.IsAny<int>()));
         }
     }
 }

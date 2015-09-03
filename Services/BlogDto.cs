@@ -14,6 +14,6 @@ namespace Services
         public IEnumerable<EntryDto> Entries { get; set; }
 
         [DataMember]
-        public Guid BlogId { get; set; }
+        public int BlogId { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace Web.Models
     {
         public string Author { get; set; }
 
-        public Guid BlogId { get; set; }
+        public int BlogId { get; set; }
 
         public IEnumerable<EntryViewModel> Entries { get; set; }
     }

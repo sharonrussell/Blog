@@ -6,10 +6,10 @@ namespace DataAccess.Repository
 {
     public interface IEntryRepository
     {
-        void AddEntry(Guid blogId, string title, string body);
+        void AddEntry(int blogId, string title, string body);
 
-        void RemoveEntry(Guid blogId, Guid entryId);
+        void RemoveEntry(int blogId, int entryId);
 
-        IEnumerable<Entry> GetEntries(Guid blogId);
+        IEnumerable<Entry> GetEntries(int blogId);
     }
 }

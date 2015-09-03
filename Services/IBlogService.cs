@@ -14,6 +14,6 @@ namespace Services
         void AddBlog(BlogDto blog);
 
         [OperationContract]
-        void RemoveBlog(Guid blogId);
+        void RemoveBlog(int blogId);
     }
 }

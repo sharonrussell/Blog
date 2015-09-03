@@ -7,10 +7,10 @@ namespace Services
     public class EntryDto
     {
         [DataMember]
-        public Guid BlogId { get; set; }
+        public int BlogId { get; set; }
 
         [DataMember]
-        public Guid EntryId { get; set; }
+        public int EntryId { get; set; }
 
         [DataMember]
         public string Title { get; set; }

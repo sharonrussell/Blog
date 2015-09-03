@@ -11,13 +11,11 @@ namespace Domain
         public Blog(string author) : this()
         {
             Author = author;
-
         }
 
         protected Blog()
         {
             _entries = new List<Entry>();
-            BlogId = Guid.NewGuid();
         }
 
         public ICollection<Entry> Entries
@@ -32,15 +30,15 @@ namespace Domain
                 throw new ArgumentNullException("entry");
             }
 
-            entry.BlogId = BlogId;
             _entries.Add(entry);
+            entry.BlogId = BlogId;
         }
 
-        public Guid BlogId { get; private set; }
+        public int BlogId { get; set; }
 
         public string Author { get; private set; }
 
-        public void RemoveEntry(Guid entryId)
+        public void RemoveEntry(int entryId)
         {
             Entry entry = _entries.SingleOrDefault(e => e.EntryId == entryId);
             

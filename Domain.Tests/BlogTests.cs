@@ -12,13 +12,19 @@ namespace Domain.Tests
         [SetUp]
         public void SetUp()
         {
-            _blog = new Blog("Sharon");
+            _blog = new Blog("Sharon")
+            {
+                BlogId = 1
+            };
         }
 
         [Test]
         public void When_AddingEntry_Should_AddToEntries()
         {
-            Entry entry = new Entry("title", "body");
+            Entry entry = new Entry("title", "body")
+            {
+                EntryId = 1
+            };
 
             _blog.AddEntry(entry);
 
@@ -48,7 +54,7 @@ namespace Domain.Tests
         [Test]
         public void When_RemovingEntry_ThatCannotBeFound_ShouldError()
         {
-            Assert.Throws<ArgumentException>(() => _blog.RemoveEntry(Guid.NewGuid()));
+            Assert.Throws<ArgumentException>(() => _blog.RemoveEntry(2));
         }
     }
 }

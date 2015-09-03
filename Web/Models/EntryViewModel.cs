@@ -8,9 +8,9 @@ namespace Web.Models
 
         public string Body { get; set; }
 
-        public Guid EntryId { get; set; }
+        public int EntryId { get; set; }
 
-        public Guid BlogId { get; set; }
+        public int BlogId { get; set; }
 
         public DateTime Date { get; set; }
     }

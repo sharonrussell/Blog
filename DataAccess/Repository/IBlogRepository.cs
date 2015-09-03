@@ -9,6 +9,6 @@ namespace DataAccess.Repository
         IList<Blog> GetBlogs();
 
         void AddBlog(Blog blog);
-        void RemoveBlog(Guid blogId);
+        void RemoveBlog(int blogId);
     }
 }

@@ -9,10 +9,10 @@ namespace Services
     {
         [OperationContract]
         [FaultContract(typeof(ObjectDoesNotExistException))]
-        void AddEntry(Guid blogId, string title, string body);
+        void AddEntry(int blogId, string title, string body);
 
         [OperationContract]
         [FaultContract(typeof(ObjectDoesNotExistException))]
-        void RemoveEntry(Guid blogId, Guid entryId);
+        void RemoveEntry(int blogId, int entryId);
     }
 }

@@ -40,7 +40,7 @@ namespace DataAccess.Repository
             }
         }
 
-        public void RemoveBlog(Guid blogId)
+        public void RemoveBlog(int blogId)
         {
             using (_context = _contextFactory.CreateContext())
             {
