@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Web.Models
+﻿namespace Web.Models
 {
     public class BlogViewModel
     {
