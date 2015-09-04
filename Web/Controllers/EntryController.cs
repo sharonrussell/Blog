@@ -38,5 +38,37 @@ namespace Web.Controllers
 
             return RedirectToAction("Index", "Blog", new { id = blogId });
         }
+
+        [HttpGet]
+        public ActionResult EditEntry(int entryId)
+        {
+            EntryDto entryDto = _service.GetEntry(entryId);
+
+            EntryViewModel viewModel = new EntryViewModel
+            {
+                BlogId = entryDto.BlogId,
+                EntryId = entryDto.EntryId,
+                Body = entryDto.Body,
+                Title = entryDto.Title,
+                Date = entryDto.Date
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditEntry(EntryViewModel viewModel, int blogId)
+        {
+            EntryDto entryDto = new EntryDto
+            {
+                EntryId = viewModel.EntryId,
+                Body = viewModel.Body,
+                Title = viewModel.Title,
+            };
+
+            _service.EditEntry(entryDto);
+
+            return RedirectToAction("Index", "Blog", new { id = blogId });
+        }
     }
 }

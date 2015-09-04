@@ -23,7 +23,7 @@ namespace DataAccess.Tests.UnitTests
         private readonly Mock<DbSet<Blog>> _blogSet = new Mock<DbSet<Blog>>();
         private readonly Mock<DbSet<Entry>> _entrySet = new Mock<DbSet<Entry>>();
 
-        private readonly IQueryable<Entry> _entries = new List<Entry>().AsQueryable();
+        private IQueryable<Entry> _entries = new List<Entry>().AsQueryable();
         private IQueryable<Blog> _blogs;
 
         [SetUp]
@@ -65,6 +65,14 @@ namespace DataAccess.Tests.UnitTests
 
             _context.Verify(o => o.SaveChanges(), Times.Never);
             Assert.Throws<ObjectDoesNotExistException>(() =>_entryRepository.AddEntry(It.IsAny<int>(), "title", "body"));
+        }
+
+        [Test]
+        public void When_EditingEntry_ThatDoesntExist_ShouldError_AndNotSaveToDB()
+        {
+            _entries = new List<Entry>().AsQueryable();
+
+            Assert.Throws<ObjectDoesNotExistException>(() => _entryRepository.EditEntry(It.IsAny<int>(), "title", "body"));
         }
 
         private void MockDbSets()

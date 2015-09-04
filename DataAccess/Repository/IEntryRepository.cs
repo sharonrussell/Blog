@@ -10,5 +10,9 @@ namespace DataAccess.Repository
         void RemoveEntry(int blogId, int entryId);
 
         IEnumerable<Entry> GetEntries(int blogId);
+        
+        Entry GetEntry(int entryId);
+        
+        void EditEntry(int entryId, string title, string body);
     }
 }

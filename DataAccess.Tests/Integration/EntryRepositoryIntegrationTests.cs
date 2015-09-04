@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 using DataAccess.Context;
 using DataAccess.Repository;
 using Domain;
@@ -97,6 +97,54 @@ namespace DataAccess.Tests.Integration
             IEnumerable<Entry> entries = _repository.GetEntries(blog.BlogId);
 
             Assert.That(entries.Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void When_GettingEntry_Should_GetFromDB()
+        {
+            Blog blog = new Blog("Sharon");
+
+            Entry entry = new Entry("title", "body");
+
+            blog.AddEntry(entry);
+            using (_context = new TestBlogContext())
+            {
+                _context.Blogs.Add(blog);
+                _context.Entries.Add(entry);
+                _context.SaveChanges();
+            }
+
+            entry = _repository.GetEntry(entry.EntryId);
+
+            Assert.That(entry, Is.Not.Null);
+            Assert.That(entry.Title, Is.EqualTo("title"));
+        }
+
+        [Test]
+        public void When_EditingEntry_Should_SaveToDB()
+        {
+            Blog blog = new Blog("Sharon");
+
+            Entry entry = new Entry("title", "body");
+
+            blog.AddEntry(entry);
+            using (_context = new TestBlogContext())
+            {
+                _context.Blogs.Add(blog);
+                _context.Entries.Add(entry);
+                _context.SaveChanges();
+            }
+
+            _repository.EditEntry(entry.EntryId, "new title", "new body");
+
+            using (_context = new TestBlogContext())
+            {
+                entry = _context.Entries.Single(e => e.EntryId == entry.EntryId);
+            }
+
+            Assert.That(entry, Is.Not.Null);
+            Assert.That(entry.Title, Is.EqualTo("new title"));
+            Assert.That(entry.Body, Is.EqualTo("new body"));
         }
     }
 }

@@ -80,6 +80,34 @@ namespace DataAccess.Repository
             {
                 return _context.Entries.Where(e => e.BlogId == blogId).ToList();
             }
-        } 
+        }
+
+        public Entry GetEntry(int entryId)
+        {
+            using (_context = _contextFactory.CreateContext())
+            {
+                Entry entry = _context.Entries.SingleOrDefault(e => e.EntryId == entryId);
+
+                return entry;
+            }
+        }
+
+        public void EditEntry(int entryId, string title, string body)
+        {
+
+            using (_context = _contextFactory.CreateContext())
+            {
+                Entry entry = _context.Entries.SingleOrDefault(e => e.EntryId == entryId);
+                
+                if (entry == null)
+                {
+                    throw new ObjectDoesNotExistException("entry does not exist with id " + entryId);
+                }
+                
+                entry.EditEntry(title, body);
+
+                _context.SaveChanges();
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Domain.Tests
 {
@@ -23,6 +24,18 @@ namespace Domain.Tests
         public void When_GettingBody_Should_Return_Body()
         {
             Assert.That(_entry.Body == "body");
+        }
+
+        [Test]
+        public void When_EditingEntry_WithEmptyTitle_ShouldError()
+        {
+            Assert.Throws<ArgumentNullException>(() => _entry.EditEntry("", "body"));
+        }        
+        
+        [Test]
+        public void When_EditingEntry_WithEmptyBody_ShouldError()
+        {
+            Assert.Throws<ArgumentNullException>(() => _entry.EditEntry("title", ""));
         }
     }
 }

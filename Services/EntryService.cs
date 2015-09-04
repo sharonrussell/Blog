@@ -2,6 +2,7 @@
 using System.ServiceModel;
 using DataAccess.Exceptions;
 using DataAccess.Repository;
+using Domain;
 
 namespace Services
 {
@@ -50,6 +51,43 @@ namespace Services
             {
                 throw new FaultException<ObjectDoesNotExistException>(ex);
             }
+        }
+
+        public void EditEntry(EntryDto entryDto)
+        {
+            try
+            {
+                _entryRepository.EditEntry(entryDto.EntryId, entryDto.Title, entryDto.Body);
+            }
+            catch (ObjectDoesNotExistException ex)
+            {
+                throw new FaultException<ObjectDoesNotExistException>(ex);
+            }
+        }
+
+        public EntryDto GetEntry(int entryId)
+        {
+            Entry entry;
+            
+            try
+            {
+                entry = _entryRepository.GetEntry(entryId);
+            }
+            catch(ObjectDoesNotExistException ex)
+            {
+                throw new FaultException<ObjectDoesNotExistException>(ex);
+            }
+
+            EntryDto entryDto = new EntryDto
+            {
+                BlogId = entry.BlogId,
+                EntryId = entry.EntryId,
+                Body = entry.Body,
+                Title = entry.Title,
+                Date = entry.Date
+            };
+
+            return entryDto;
         }
     }
 }

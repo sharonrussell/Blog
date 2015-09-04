@@ -201,6 +201,7 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Entry\AddEntry.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Entry\EditEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

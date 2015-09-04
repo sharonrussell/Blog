@@ -6,18 +6,7 @@ namespace Domain
     {
         public Entry(string title, string body)
         {
-            if (String.IsNullOrWhiteSpace(title))
-            {
-                throw new ArgumentNullException("title");
-            }
-
-            if (String.IsNullOrWhiteSpace(body))
-            {
-                throw new ArgumentNullException("body");
-            }
-
-            Title = title;
-            Body = body;
+            EditEntry(title, body);
             Date = DateTime.Now;
         }
 
@@ -36,5 +25,21 @@ namespace Domain
         public int BlogId { get; set; }
 
         public DateTime Date { get; set; }
+
+        public void EditEntry(string title, string body)
+        {
+            if (String.IsNullOrWhiteSpace(title))
+            {
+                throw new ArgumentNullException("title");
+            }
+
+            if (String.IsNullOrWhiteSpace(body))
+            {
+                throw new ArgumentNullException("body");
+            }
+
+            Title = title;
+            Body = body;
+        }
     }
 }

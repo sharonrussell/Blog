@@ -13,5 +13,13 @@ namespace Services
         [OperationContract]
         [FaultContract(typeof(ObjectDoesNotExistException))]
         void RemoveEntry(int blogId, int entryId);
+
+        [OperationContract]
+        [FaultContract(typeof(ObjectDoesNotExistException))]
+        void EditEntry(EntryDto entryDto);
+
+        [OperationContract]
+        [FaultContract(typeof(ObjectDoesNotExistException))]
+        EntryDto GetEntry(int entryId);
     }
 }

@@ -1,0 +1,30 @@
+﻿@model Web.Models.EntryViewModel
+
+@{
+	string @title = String.Format("Edit entry - {0}", Model.Title);
+	ViewBag.Title = @title;
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@title</h2>
+@using (Html.BeginForm("EditEntry", "Entry", FormMethod.Post))
+{
+	@Html.HiddenFor(m => m.BlogId)
+	@Html.HiddenFor(m => m.EntryId)
+	
+	<section>
+		@Html.DisplayNameFor(m => m.Title)
+		<div>
+			@Html.TextBoxFor(m => m.Title)
+		</div>
+	</section>
+	<section>
+		@Html.DisplayNameFor(m => m.Body)
+		<div>
+			@Html.TextAreaFor(m => m.Body)
+		</div>
+	</section>
+	<section>
+		<input type="submit" value="Submit" />
+	</section>
+}
