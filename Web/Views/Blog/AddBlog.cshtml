@@ -7,16 +7,25 @@
 
 @using (Html.BeginForm("AddBlog", "Blog", FormMethod.Post))
 {
-	<section>
-		<h2>@title</h2>
-		<section>
-			@Html.DisplayNameFor(m => m.Author)
-		</section>
-		<section>
-			@Html.TextBoxFor(m => m.Author)
-		</section>
-		<section>
-			<input type="submit" value="Submit"/>
-		</section>
-	</section>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h2>
+				@title
+			</h2>
+		</div>
+		<div class="panel-body">
+			<div>
+				@Html.DisplayNameFor(m => m.Author)
+			</div>
+			<div>
+				@Html.TextBoxFor(m => m.Author, new { @class="col-md-10 form-control"})
+			</div>
+		</div>
+		<div class="panel-body">
+			<button class="btn btn-success btn-sm" type="submit" value="Add">
+				<span class="glyphicon glyphicon-plus"></span>
+				Add
+			</button>
+		</div>
+	</div>
 }

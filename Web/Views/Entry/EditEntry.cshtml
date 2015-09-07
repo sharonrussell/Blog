@@ -6,25 +6,29 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@title</h2>
 @using (Html.BeginForm("EditEntry", "Entry", FormMethod.Post))
 {
 	@Html.HiddenFor(m => m.BlogId)
 	@Html.HiddenFor(m => m.EntryId)
-	
-	<section>
-		@Html.DisplayNameFor(m => m.Title)
-		<div>
-			@Html.TextBoxFor(m => m.Title)
+	<div class="panel panel-info">
+		<div class="panel-heading h2">@title</div>
+		<div class="panel-body">
+			@Html.DisplayNameFor(m => m.Title)
+			<div>
+				@Html.TextBoxFor(m => m.Title, new {@class="col-md-10 form-control"})
+			</div>
 		</div>
-	</section>
-	<section>
-		@Html.DisplayNameFor(m => m.Body)
-		<div>
-			@Html.TextAreaFor(m => m.Body)
+		<div class="panel-body">
+			@Html.DisplayNameFor(m => m.Body)
+			<div>
+				@Html.TextAreaFor(m => m.Body, new {@class="col-md-10 form-control"})
+			</div>
 		</div>
-	</section>
-	<section>
-		<input type="submit" value="Submit" />
-	</section>
+		<div class="panel-body">
+			<button class="btn btn-success btn-sm" type="submit" value="Submit">
+				<span class="glyphicon glyphicon-pencil"></span>
+				Submit
+			</button>
+		</div>
+	</div>
 }

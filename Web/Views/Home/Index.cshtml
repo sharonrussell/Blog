@@ -7,15 +7,21 @@
 	ViewBag.Title = @title;
 }
 
-<section>
+<div>
 	<h2>@title</h2>
-	<section>
+	<div>
 		@foreach (BlogViewModel model in Model)
 		{
-			string authorLink = String.Format("View {0}'s blog", model.Author);
-			<section>
+			string authorLink = String.Format("{0}'s blog", model.Author);
+			<p>
 				<a href='@Url.Action("Index", "Blog", new {id = model.BlogId})'>@authorLink</a>
-			</section>
+			</p>
 		}
-	</section>
-</section>
+	</div>
+</div>
+<div>
+	<a class="btn btn-success btn-sm" href='@Url.Action("AddBlog", "Blog")'>
+		<span class="glyphicon glyphicon-plus"></span>
+		Add blog
+	</a>
+</div>

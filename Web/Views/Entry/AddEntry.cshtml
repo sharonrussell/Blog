@@ -5,25 +5,35 @@
 	string title = "Add new blog entry";
 	ViewBag.Title = @title;
 }
-<section>
-	<h2>@title</h2>
-	@using (Html.BeginForm("AddEntry", "Entry", FormMethod.Post))
-	{
+
+@using (Html.BeginForm("AddEntry", "Entry", FormMethod.Post))
+{
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h2>
+				@title
+			</h2>
+		</div>
 		@Html.HiddenFor(m => m.BlogId)
-		<section>
-			@Html.DisplayNameFor(m => m.Title)
-			<div>
-				@Html.TextBoxFor(m => m.Title)
+		<div>
+			<div class="panel-body">
+				@Html.DisplayNameFor(m => m.Title)
+				<div>
+					@Html.TextBoxFor(m => m.Title, new {@class="col-md-10 form-control"})
+				</div>
 			</div>
-		</section>
-		<section>
-			@Html.DisplayNameFor(m => m.Body)
-			<div>
-				@Html.TextAreaFor(m => m.Body)
+			<div class="panel-body">
+				@Html.DisplayNameFor(m => m.Body)
+				<div>
+					@Html.TextAreaFor(m => m.Body, new {@class = "col-md-10 form-control"})
+				</div>
 			</div>
-		</section>
-		<section>
-			<input type="submit" value="Submit"/>
-		</section>
-	}
-</section>
+			<div class="panel-body">
+				<button class="btn btn-success btn-sm" type="submit" value="Add">
+					<span class="glyphicon glyphicon-plus"></span>
+					Add
+				</button>
+			</div>
+		</div>
+	</div>
+}

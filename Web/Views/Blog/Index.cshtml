@@ -6,30 +6,50 @@
 	string title = @String.Format("{0}'s Blog", Model.Author);
 	ViewBag.Title = title;
 }
-<div class="span9">
-	@foreach (EntryViewModel entry in Model.Entries)
-	{
-		<section>
-			<section>
-				<h3>@Html.DisplayFor(m => entry.Title) - @Html.DisplayFor(m => entry.Date)</h3>
-			</section>
-			<section>
-				<p>@Html.Raw(Html.Encode(entry.Body).Replace("\n", "<br />"))</p>
-			</section>
-			<div>
-				<a href='@Url.Action("RemoveEntry", "Entry", new {blogId = Model.BlogId, entryId = entry.EntryId})'>Remove entry</a>
+	<div class="container-fluid">
+		<div>
+			<div class="h2">
+				@title
+				<div class="pull-right">
+					<a class="btn btn-danger btn-sm" href='@Url.Action("RemoveBlog", "Blog", new {id = Model.BlogId})'>
+						<span class="glyphicon glyphicon-minus"></span>
+						Remove blog
+					</a>
+					<a class="btn btn-success btn-sm" href='@Url.Action("AddEntry", "Entry", new {id = Model.BlogId})'>
+						<span class="glyphicon glyphicon-plus"></span>
+						Add entry
+					</a>
+				</div>
 			</div>
-			<div>
-				<a href='@Url.Action("EditEntry", "Entry", new {entryId = entry.EntryId})'>Edit entry</a>
+		</div>
+		<div class="row-fluid">
+			<div class="panel-group">
+				@foreach (EntryViewModel entry in Model.Entries)
+				{
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<div class="h3">
+								@Html.DisplayFor(m => entry.Title)
+								<div class="pull-right">
+									<a class="btn btn-warning btn-sm" href='@Url.Action("RemoveEntry", "Entry", new {blogId = Model.BlogId, entryId = entry.EntryId})'>
+										<span class="glyphicon glyphicon-minus"></span>
+										Remove entry
+									</a>
+									<a class="btn btn-primary btn-sm" href='@Url.Action("EditEntry", "Entry", new {blogId = Model.BlogId, entryId = entry.EntryId})'>
+										<span class="glyphicon glyphicon-pencil"></span>
+										Edit entry
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<p>@Html.Raw(Html.Encode(entry.Body).Replace("\n", "<br />"))</p>
+						</div>
+						<div class="panel-footer">
+							@Model.Author - @Html.DisplayFor(m => entry.Date)
+						</div>
+					</div>
+				}
 			</div>
-		</section>
-	}
-</div>
-<div id="sidebar-wrapper">
-	<ul class="sidebar-nav">
-		<li class="sidebar-brand">@title</li>
-		<li>@Html.ActionLink("Add Entry", "AddEntry", "Entry", new { id = Model.BlogId }, new { })</li>
-		<li>@Html.ActionLink("Remove Blog", "RemoveBlog", "Blog", new { id = Model.BlogId }, new { })</li>
-		<li>@Html.ActionLink("Home", "Index", "Home")</li>
-	</ul>
-</div>
+		</div>
+	</div>
