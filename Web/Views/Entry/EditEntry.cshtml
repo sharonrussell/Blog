@@ -11,7 +11,11 @@
 	@Html.HiddenFor(m => m.BlogId)
 	@Html.HiddenFor(m => m.EntryId)
 	<div class="panel panel-info">
-		<div class="panel-heading h2">@title</div>
+		<div class="panel-heading">
+			<h2>
+				@title
+			</h2>
+		</div>
 		<div class="panel-body">
 			@Html.DisplayNameFor(m => m.Title)
 			<div>
