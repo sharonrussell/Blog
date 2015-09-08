@@ -11,11 +11,11 @@
 			<div class="h2">
 				@title
 				<div class="pull-right">
-					<a class="btn btn-danger btn-sm" href='@Url.Action("RemoveBlog", "Blog", new {id = Model.BlogId})'>
+					<a class="btn btn-info btn-sm" href='@Url.Action("RemoveBlog", "Blog", new {id = Model.BlogId})'>
 						<span class="glyphicon glyphicon-minus"></span>
 						Remove blog
 					</a>
-					<a class="btn btn-success btn-sm" href='@Url.Action("AddEntry", "Entry", new {id = Model.BlogId})'>
+					<a class="btn btn-primary btn-sm" href='@Url.Action("AddEntry", "Entry", new {id = Model.BlogId})'>
 						<span class="glyphicon glyphicon-plus"></span>
 						Add entry
 					</a>
@@ -31,11 +31,11 @@
 							<div class="h3">
 								@Html.DisplayFor(m => entry.Title)
 								<div class="pull-right">
-									<a class="btn btn-warning btn-sm" href='@Url.Action("RemoveEntry", "Entry", new {blogId = Model.BlogId, entryId = entry.EntryId})'>
+									<a class="btn btn-default btn-sm" href='@Url.Action("RemoveEntry", "Entry", new {blogId = Model.BlogId, entryId = entry.EntryId})'>
 										<span class="glyphicon glyphicon-minus"></span>
 										Remove entry
 									</a>
-									<a class="btn btn-primary btn-sm" href='@Url.Action("EditEntry", "Entry", new {blogId = Model.BlogId, entryId = entry.EntryId})'>
+									<a class="btn btn-default btn-sm" href='@Url.Action("EditEntry", "Entry", new {blogId = Model.BlogId, entryId = entry.EntryId})'>
 										<span class="glyphicon glyphicon-pencil"></span>
 										Edit entry
 									</a>
